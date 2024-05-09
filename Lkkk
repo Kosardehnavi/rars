@@ -1,0 +1,31 @@
+.data
+array: .space 200  
+
+.text
+.globl main
+
+main:
+    li  t0, 0       
+    li  t1, 0       
+    li  t2, 50      
+    la  t3, array   
+
+loop:
+    beq t1, t2, end 
+    
+    lw  t4, 0(t3)   
+    rem t5, t4, 4   
+    beqz t5, increment
+    
+    addi t3, t3, 8  
+    addi t1, t1, 1  
+    j   loop        
+
+increment:
+    addi t0, t0, 1  
+    addi t3, t3, 8  
+    addi t1, t1, 1  
+    j   loop        
+
+end:
+    ; ...
